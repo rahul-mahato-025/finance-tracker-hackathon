@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense - Track your expenses</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/media.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Numans&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="navbar">
+        <nav>
+          <h2 class="navbar-title">finance tracker</h2>
+        </nav>
+      </div>
+
+      <div class="main-container">
+        <div class="main-left">
+          <div class="main-left__upper-container">
+            <div class="balance-box flex-row">
+              <span class="balance-box__text">Balance</span>
+            </div>
+            <span class="balance">&#8377; 0</span>
+          </div>
+
+          <div class="main-left__bottom-container">
+            <div class="income-expense-container">
+              <div class="income-container flex-col selected">
+                <p class="text">Income</p>
+                <p class="income-amt">&#8377; 0</p>
+              </div>
+              <div class="expense-container flex-col">
+                <p class="text">Expense</p>
+                <p class="expense-amt">&#8377; 0</p>
+              </div>
+            </div>
+
+            <div class="description-container">
+              <form class="form">
+                <div class="description-left">
+                  <div class="description-box">
+                    <label for="desc-add">Description</label>
+                    <input id="desc-add" type="text" maxlength="14" required />
+                  </div>
+                  <div class="amount-box">
+                    <label for="amt-add">Amount</label>
+                    <input id="amt-add" type="number" required />
+                  </div>
+                </div>
+                <div class="description-right">
+                  <button class="add-btn">
+                    <img src="./assets/images/plus.png" alt="add transaction" />
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-right">
+          <h3 class="transaction-title">Transactions</h3>
+          <div class="transactions"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay-wrapper">
+      <div class="edit-container">
+        <button class="edit-close-btn">
+          <img src="./assets/images/close.png" />
+        </button>
+        <form class="form-2">
+          <div class="edit-description-left">
+            <div class="transaction-type-container">
+              <label>Transaction Type</label>
+              <select class="edit-transaction-type">
+                <option>Income</option>
+                <option>Expense</option>
+              </select>
+            </div>
+            <div class="edit-description-box">
+              <label for="desc-edit">Description</label>
+              <input
+                id="desc-edit"
+                class="edit-desc-input"
+                type="text"
+                maxlength="14"
+                required
+              />
+            </div>
+            <div class="edit-amount-box">
+              <label for="amt-edit">Amount</label>
+              <input
+                id="amt-edit"
+                class="edit-amt-input"
+                type="number"
+                required
+              />
+            </div>
+          </div>
+          <div class="edit-description-right">
+            <button class="edit-save-btn">
+              <img src="./assets/images/check.png" />
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="toast-container">
+      <p class="toast-msg"></p>
+    </div>
+    <script src="./scripts/main.js" />
+  </body>
+</html>

@@ -1,0 +1,93 @@
+@media (max-width: 1330px) {
+  .main-left {
+    width: 45%;
+  }
+}
+
+@media (max-width: 1235px) {
+  .main-right {
+    width: 42rem;
+    height: 48.5rem;
+  }
+
+  .edit-container {
+    width: 42rem;
+    height: 30rem;
+  }
+
+  .icons {
+    width: 30%;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 1172px) {
+  .main-left {
+    width: 45%;
+  }
+
+  .main-right {
+    width: 36rem;
+  }
+}
+
+@media (max-width: 1020px) {
+  .main-container {
+    margin: 0 auto;
+    flex-direction: column;
+  }
+  .main-left {
+    width: 90%;
+  }
+  .main-right {
+    width: 90%;
+    height: 36rem;
+  }
+
+  .main-left__bottom-container {
+    margin: 0 auto;
+    width: 100%;
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .text,
+  .expense-amt,
+  .income-amt {
+    font-size: 1.8rem;
+  }
+
+  .main-left__upper-container span {
+    font-size: 2rem;
+  }
+
+  .main-left__bottom-container label {
+    font-size: 1.4rem;
+  }
+
+  .add-btn,
+  .edit-save-btn {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .balance-box {
+    width: 16rem;
+    height: 6rem;
+  }
+
+  .transaction {
+    font-size: 1.4rem;
+  }
+
+  .edit-container {
+    width: 28rem;
+    height: 24rem;
+    padding: 2rem;
+  }
+
+  .edit-transaction-type {
+    width: 12rem;
+  }
+}
