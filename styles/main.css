@@ -17,12 +17,12 @@
 html {
   font-size: 62.5%;
   font-family: "Numans", sans-serif;
-}
-
-body {
   background: #000000;
   background: -webkit-linear-gradient(to bottom right, #000000, #434343);
   background: linear-gradient(to bottom right, #000000, #434343);
+}
+
+body {
 }
 
 body::-webkit-scrollbar {
@@ -73,6 +73,7 @@ select {
 }
 
 .wrapper {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 4rem;
@@ -254,6 +255,7 @@ select {
   padding: 2rem;
   overflow-y: scroll;
   overflow-x: hidden;
+  position: relative;
 }
 
 .main-right::-webkit-scrollbar {
@@ -337,6 +339,27 @@ select {
 
 .expend {
   color: red;
+}
+
+.no-transactions {
+  width: 18rem;
+  height: 6rem;
+  background: rgba(16, 16, 16, 0.64);
+  border-radius: 0.5rem;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.no-transactions__text {
+  color: var(--text-primary);
+  font-size: 1.6rem;
 }
 
 /* --------------------------------------------  OVERLAY ------------------------------------------------ */

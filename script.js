@@ -11,7 +11,7 @@ const form = document.querySelector(".form");
 const editForm = document.querySelector(".form-2");
 const toastContainer = document.querySelector(".toast-container");
 const toastMsg = document.querySelector(".toast-msg");
-const testBtn = document.querySelector(".test-btn");
+const noTransactionsContainer = document.querySelector(".no-transactions");
 
 // TextElements
 const balanceSpan = document.querySelector(".balance");
@@ -31,9 +31,22 @@ if (transactionList) {
   transactionList = [];
 }
 
-if (transactionList.length === 0) {
-  transactionsContainer.innerText = "No Transaction";
-}
+const showNoTransactions = (list) => {
+  if (list.length === 0) {
+    noTransactionsContainer.style.display = "flex";
+  } else {
+    noTransactionsContainer.style.display = "none";
+  }
+};
+
+/* SHOW TOAST MESSAGE */
+const showToast = (msg) => {
+  toastContainer.style.display = "flex";
+  toastMsg.innerText = msg;
+  setTimeout(() => {
+    toastContainer.style.display = "none";
+  }, 2000);
+};
 
 const updateBalance = (income, expense, balance) => {
   incomeAmtSpan.innerText = `\u20B9  ${Number(income)}`;
@@ -50,6 +63,7 @@ const refreshTransactions = () => {
   transactionList.forEach((transaction) => {
     updateTransactionsDiv(transaction);
   });
+  showNoTransactions(transactionList);
 };
 
 const handleTransactionRemove = (e) => {
@@ -83,15 +97,14 @@ const handleTransactionRemove = (e) => {
   refreshTransactions();
   updateListenerForEditAndRemove();
   updateBalance(incomeAmt, expenseAmt, balanceAmt);
+  showNoTransactions(transactionList);
 };
 
 const handleTransactionEdit = (e) => {
   const id = e.target.id;
-  console.log(e);
   const transaction = transactionList.filter(
     (transaction) => transaction.id === id
   );
-  console.log(transaction[0]);
   editTransactionId = id;
   editOverlayContaier.style.display = "flex";
   editTransactionType.value =
@@ -155,22 +168,7 @@ const updateTransactionsDiv = (transaction) => {
   updateListenerForEditAndRemove();
 };
 
-incomeContainer.addEventListener("click", () => {
-  expenseContainer.classList.remove("selected");
-  incomeContainer.classList.add("selected");
-  transactionType = "add";
-});
-
-expenseContainer.addEventListener("click", () => {
-  incomeContainer.classList.remove("selected");
-  expenseContainer.classList.add("selected");
-  transactionType = "spend";
-});
-
-editCloseBtn.addEventListener("click", () => {
-  editOverlayContaier.style.display = "none";
-});
-
+/* HANDLE FORM SUBMIT */
 const handleSubmit = (e) => {
   e.preventDefault();
   const desc = e.target[0].value;
@@ -194,14 +192,14 @@ const handleSubmit = (e) => {
   showToast("Transaction added.");
   updateTransactionsDiv(transaction);
   updateBalance(incomeAmt, expenseAmt, balanceAmt);
+  showNoTransactions(transactionList);
 };
 
 const handleEditFormSubmit = (e) => {
   e.preventDefault();
-  console.log(e);
   const type = e.target[0].value;
   const desc = e.target[1].value;
-  const newAmt = e.target[2].value;
+  const newAmt = Math.abs(e.target[2].value);
   var prevAmt = 0;
   var prevType = "";
 
@@ -251,18 +249,27 @@ const handleEditFormSubmit = (e) => {
   editOverlayContaier.style.display = "none";
 };
 
+/* EVENT LISTENERS */
+incomeContainer.addEventListener("click", () => {
+  expenseContainer.classList.remove("selected");
+  incomeContainer.classList.add("selected");
+  transactionType = "add";
+});
+
+expenseContainer.addEventListener("click", () => {
+  incomeContainer.classList.remove("selected");
+  expenseContainer.classList.add("selected");
+  transactionType = "spend";
+});
+
+editCloseBtn.addEventListener("click", () => {
+  editOverlayContaier.style.display = "none";
+});
+
 form.addEventListener("submit", handleSubmit);
 editForm.addEventListener("submit", handleEditFormSubmit);
+
 updateBalance(incomeAmt, expenseAmt, balanceAmt);
 updateListenerForEditAndRemove();
 refreshTransactions();
-
-// -----------------------------------------------------
-
-const showToast = (msg) => {
-  toastContainer.style.display = "flex";
-  toastMsg.innerText = msg;
-  setTimeout(() => {
-    toastContainer.style.display = "none";
-  }, 2000);
-};
+showNoTransactions(transactionList);
